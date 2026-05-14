@@ -19,7 +19,7 @@ A **Claude Code Skill** that generates a professional academic literature review
 - **Figure extraction:** from publisher HTML **or embedded PDF images via PyMuPDF**
 - **Table extraction:** pdfplumber structured extraction, screenshot with fallback
 - **Hybrid mode:** online metadata + local PDF content (bypasses paywalls)
-- **Academically styled:** two-tone navy design, action titles, Arial font
+- **4 design templates:** Navy (default), Teal (medical), Slate (tech), Nature Dark (premium)
 - **Graceful fallbacks:** text-only layout when figures unavailable; never crashes
 
 ## Installation
@@ -42,8 +42,13 @@ pip install pymupdf               # PDF fallback (optional)
 Invoke in Claude Code:
 
 ```bash
-# By DOI
+# By DOI (default navy template)
 /paper2ppt 10.1186/s12913-026-14482-6 please make a literature review PPT
+
+# Select a template
+/paper2ppt -t teal 10.1186/s12913-026-14482-6
+/paper2ppt --template nature PMID: 13170306
+/paper2ppt -t slate "paper title"
 
 # By PMID
 /paper2ppt PMID: 13170306
@@ -84,6 +89,19 @@ Slide count adapts to content. These are the required sections:
 | PMCID | `PMC13170306` / `PMCID: PMC13170306` | NCBI API to DOI |
 | URL | `https://doi.org/...` | Auto-detect |
 | Title | `"paper title"` | CrossRef / PubMed / Google Scholar |
+
+## Design Templates
+
+| Template | Alias | Style |
+| :------- | :---- | :---- |
+| Academic Navy | `navy` (default) | Deep navy + blue, professional |
+| Academic Teal | `teal` | Teal + green, fresh, medical |
+| Slate Modern | `slate` | Dark slate + indigo, tech |
+| Nature Dark | `nature` | Midnight + gold, premium |
+
+```bash
+/paper2ppt -t teal 10.1186/s12913-026-14482-6
+```
 
 ## File Structure
 

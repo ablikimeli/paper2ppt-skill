@@ -520,6 +520,34 @@ When **both a DOI/URL and a local PDF** are available:
 
 ## Phase 4: Generate the PPTX
 
+### 4.0 Choose a Design Template (NEW)
+
+Select a visual theme before generating the PPTX. Default is `academic-navy`.
+
+| Template | Theme ID | Best For | Style |
+|----------|----------|----------|-------|
+| [Academic Navy](templates/academic-navy.md) | `navy` | General literature review (default) | Deep navy + blue, professional |
+| [Academic Teal](templates/academic-teal.md) | `teal` | Medical, health, life sciences | Fresh teal + green, modern |
+| [Slate Modern](templates/slate-modern.md) | `slate` | Tech, CS, engineering | Dark slate + indigo, clean |
+| [Nature Dark](templates/nature-dark.md) | `nature` | High-impact journal presentations | Midnight + gold, premium |
+
+**User can select a template by saying:**
+```
+/paper2ppt --template teal 10.1186/s12913-026-14482-6 文献汇报PPT
+/paper2ppt -t slate DOI: 10.xxxx/xxxx
+/paper2ppt -t nature "paper title"
+```
+
+**Template selection rule:**
+- If user specifies `--template X` or `-t X` → use that template
+- If user says "医学" or "health" or "medical" → default to `teal`
+- If user says "tech" or "CS" or "engineering" → default to `slate`
+- If user mentions "Nature" or "premium" → default to `nature`
+- Otherwise → `navy` (default)
+
+**Implementation:**
+Before writing the pptxgenjs script, read the selected template file from `templates/` and incorporate its color palette, typography, and slide layout code into the generated script. The templates provide code snippets that should be copied verbatim (with variable names adapted to the paper's data).
+
 ### 4.1 Slide Structure (Content-Adaptive)
 
 Every literature review PPT must include these **core sections** in order. Number of slides per section adapts to content depth.
@@ -1159,6 +1187,7 @@ pip install pdfplumber
 
 ## References
 
+- [Design Templates](templates/) — Color palettes, typography, and slide layouts
 - [Publisher Patterns](references/publisher_patterns.md) — Figure/table extraction per publisher
 - [CrossRef API Reference](../paper-lookup/references/crossref.md) — DOI metadata API
 - [PptxGenJS Tutorial](../pptx/pptxgenjs.md) — PPT generation API
@@ -1171,6 +1200,13 @@ pip install pdfplumber
 ```
 D:/Claude/.claude/skills/paper2ppt/
 ├── SKILL.md                          ← Entry point + workflow (this file)
+├── README.md                         ← English readme
+├── README.zh.md                      ← Chinese readme
+├── templates/                        ← Design templates
+│   ├── academic-navy.md              ←   Navy blue (default)
+│   ├── academic-teal.md              ←   Teal green (medical)
+│   ├── slate-modern.md               ←   Slate indigo (tech)
+│   └── nature-dark.md                ←   Midnight gold (premium)
 └── references/
     └── publisher_patterns.md         ← Extraction patterns
 ```
