@@ -12,11 +12,14 @@ A **Claude Code Skill** that generates a professional academic literature review
 
 ## Features
 
-- **Multiple input formats:** DOI, PMID, PMCID, paper URL, title search
+- **Multiple input formats:** DOI, PMID, PMCID, paper URL, **local PDF path**, title search
+- **Paper verification:** Cross-validates between CrossRef and NCBI to avoid wrong papers
 - **Auto metadata:** title, authors, journal, date, abstract from CrossRef
 - **Impact Factor & JCR quartile:** via WebSearch
-- **Auto figure download:** from publisher HTML or PDF fallback
-- **Academically styled:** action titles, navy color scheme, Arial font
+- **Figure extraction:** from publisher HTML **or embedded PDF images via PyMuPDF**
+- **Table extraction:** pdfplumber structured extraction, screenshot with fallback
+- **Hybrid mode:** online metadata + local PDF content (bypasses paywalls)
+- **Academically styled:** two-tone navy design, action titles, Arial font
 - **Graceful fallbacks:** text-only layout when figures unavailable; never crashes
 
 ## Installation
