@@ -1,6 +1,6 @@
 # Template: Slate Modern (Redesigned)
 
-Dark slate + vermillion tech style with triangular corner accents, circular stat badges, chevron decorations, and bold typography.
+Slate + vermillion tech style with triangular corner accents, circular stat badges, chevron decorations, and bold typography. Lightened slate background.
 
 ```text
 Theme ID: slate-modern
@@ -11,18 +11,16 @@ Alias:    slate, modern, indigo, tech, cs, engineering
 
 ## Visual Impression
 
-Dark slate (`2C3E50`) primary with vibrant vermillion (`D55E00`) accent — a color‑blind friendly combination. The title slide features a large right‑triangle corner element in vermillion and a small circular stat preview. Content slides have a slate left bar ending in a triangular "arrow" shape. Stats are displayed in circular vermillion badges. Sharp, geometric, bold, modern — suited for tech, CS, and engineering presentations.
+Slate (`3D4F5F`) primary with vibrant vermillion (`D55E00`) accent — a color‑blind friendly combination. The title slide features a large right‑triangle corner element in vermillion. Content slides have a slate left bar ending in a triangular "arrow" shape. Stats are displayed in circular vermillion badges. Sharp, geometric, bold, modern.
 
 ---
 
 ## Color Palette (Color‑Blind Friendly)
 
-Uses the Wong 2011 *Nature Methods* accessible palette.
-
 ```javascript
 const C = {
-  primary: "2C3E50",   // Dark slate — title bg
-  primary2:"1A252F",   // Darker slate — bottom band
+  primary: "3D4F5F",   // Slate (lighter than before) — title bg
+  primary2:"2C3E50",   // Darker slate — bottom band
   accent:  "D55E00",   // Vermillion — highlights, triangles, badges
   accent2: "FDE8D0",   // Light orange — card fill
   accent3: "95A5A6",   // Silver — decorative chevrons
@@ -56,7 +54,7 @@ const F = {
 
 ### Title Slide
 
-Dark slate background with a large vermillion right‑triangle cutting into the top‑right corner. Small circular stat preview bottom‑left. Vermillion accent bar.
+Slate background with a large vermillion right‑triangle cutting into the top‑right corner. Vermillion accent bar and bottom bar.
 
 ```text
 ┌──────────────────────────────────────────────────────┐
@@ -70,18 +68,17 @@ Dark slate background with a large vermillion right‑triangle cutting into the 
 │  Author1, Author2, et al.                  ╱       │
 │  Journal Name  |  Date  |  IF: X.X       ╱        │
 │                                         ╱         │
-│  (○) stat preview                    ╱          │
-│                                     ╱           │
-│  ███████████████████████████████████            │  vermillion bottom bar
+│                                       ╱          │
+│  ███████████████████████████████████              │  vermillion bottom bar
 └──────────────────────────────────────────────────────┘
 ```
 
 ```javascript
 function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quartile) {
   const slide = pres.addSlide();
-  // Dark slate base
+  // Slate base
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "2C3E50" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "3D4F5F" },
   });
   // Vermillion right-triangle corner accent
   slide.addShape(pres.shapes.RIGHT_TRIANGLE, {
@@ -127,7 +124,7 @@ function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quar
 
 ### Content Slide
 
-White background. Vermillion left accent bar with a triangular base (chevron effect). Thin divider under title. Decorative small chevron at top‑right.
+White background. Vermillion left accent bar with a triangular base (chevron effect). Thin divider under title. Small chevron at top‑right.
 
 ```text
 ┌──────────────────────────────────────────────────────┐
@@ -163,12 +160,12 @@ function contentSlide(title, n) {
   // Small decorative chevron top-right
   slide.addShape(pres.shapes.CHEVRON, {
     x: 9.1, y: 0.15, w: 0.5, h: 0.3,
-    fill: { color: "2C3E50", transparency: 30 },
+    fill: { color: "3D4F5F", transparency: 20 },
   });
   // Title
   slide.addText(title, {
     x: 0.4, y: 0.2, w: 9.1, h: 0.75,
-    fontSize: 28, fontFace: "Arial", color: "2C3E50",
+    fontSize: 28, fontFace: "Arial", color: "3D4F5F",
     bold: true, valign: "top", margin: 0,
   });
   // Divider
@@ -184,7 +181,7 @@ function contentSlide(title, n) {
 
 ### Stat Card
 
-Large vermillion number in a circle, followed by a description. Use for highlighting key quantitative findings.
+Large vermillion number in a circle, followed by a description.
 
 ```javascript
 function addStatCard(slide, number, label, y) {
@@ -209,7 +206,7 @@ function addStatCard(slide, number, label, y) {
   // Description
   slide.addText(label, {
     x: 1.6, y: y + 0.05, w: 7.6, h: 0.75,
-    fontSize: 16, fontFace: "Arial", color: "2C3E50",
+    fontSize: 16, fontFace: "Arial", color: "3D4F5F",
     valign: "middle",
   });
   // Small triangular accent on card
@@ -224,14 +221,14 @@ function addStatCard(slide, number, label, y) {
 
 ### TOC Slide
 
-Dark slate with vermillion triangle corner. Vermillion bottom bar.
+Slate with vermillion triangle corner. Vermillion bottom bar.
 
 ```javascript
 function tocSlide(sections) {
   const slide = pres.addSlide();
   // Slate base
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "2C3E50" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "3D4F5F" },
   });
   // Decorative triangle
   slide.addShape(pres.shapes.RIGHT_TRIANGLE, {
@@ -269,7 +266,7 @@ function tocSlide(sections) {
 function endSlide() {
   const slide = pres.addSlide();
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "2C3E50" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "3D4F5F" },
   });
   // Triangle accent
   slide.addShape(pres.shapes.RIGHT_TRIANGLE, {

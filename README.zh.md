@@ -89,10 +89,10 @@ pip install pymupdf               # PDF 提取（可选）
 
 | 模板 | 别名 | 风格 |
 | :--- | :--- | :--- |
-| Academic Navy | `navy`（默认） | 蓝 + 橙，装饰圆形，衬线标题，色盲友好 |
-| Academic Teal | `teal` | 青绿 + 粉，重叠圆形，菱形装饰，医学 |
-| Slate Modern | `slate` | 石板灰 + 朱红，三角切角，折线装饰，科技 |
-| Nature Dark | `nature` | 午夜 + 天蓝/橙，几何点线，高端 |
+| Academic Navy | `navy`（默认） | 深蓝 + 金色，装饰圆形，衬线标题 |
+| Academic Teal | `teal` | 紫色 + 粉色，重叠圆形，菱形装饰，医学 |
+| Slate Modern | `slate` | 墨灰 + 朱红，三角切角，折线装饰，科技 |
+| Nature Dark | `nature` | 暖象牙白 + 蓝/金，几何点线，高端 |
 
 ```bash
 /paper2ppt -t teal 10.1186/s12913-026-14482-6

@@ -1,6 +1,6 @@
 # Template: Academic Navy (Redesigned)
 
-Scholarly style using a color‑blind friendly blue‑orange palette with Georgia serif titles, decorative circular elements, and layered card designs.
+Scholarly style using deep navy + white with gold accents, decorative circular elements, and layered card designs.
 
 ```text
 Theme ID: academic-navy
@@ -11,26 +11,23 @@ Alias:    navy, default, scholarly, bluebook
 
 ## Visual Impression
 
-Deep blue (`0072B2`) primary with warm orange (`E69F00`) accents. Large semi‑transparent circles create depth on dark slides. Content slides use a clean white background with a blue left bar, thin top rule, and a small orange circle as a visual anchor. Highlight cards feature an orange left stripe and a subtle dot accent. Confident, scholarly, accessible.
+Deep navy (`1A3A5C`) primary with warm gold (`C9A84C`) accents and pure white content backgrounds. Large translucent circles create depth on title slides. Content slides use a clean white background with a navy left bar and a small gold circle as a visual anchor. Highlight cards feature a gold left stripe and a subtle dot accent. Confident, scholarly, accessible.
 
 ---
 
-## Color Palette (Color‑Blind Friendly)
-
-Uses the Wong 2011 *Nature Methods* accessible palette — distinguishable by protanopia, deuteranopia, and tritanopia.
+## Color Palette
 
 ```javascript
 const C = {
-  primary: "0072B2",   // Blue — title bg, accent bars
-  primary2:"00508A",   // Darker blue — bottom band
-  accent:  "E69F00",   // Orange — highlights, rules, card accents
-  accent2: "FFF3E0",   // Light orange — card fill
-  accent3: "56B4E9",   // Sky blue — decorative circles, links
+  primary: "1A3A5C",   // Deep navy — title bg, accent bars
+  primary2:"2B5A8A",   // Lighter navy — bottom band, decorative circles
+  accent:  "C9A84C",   // Gold — highlights, rules, card accents
+  accent2: "F8F6F0",   // Warm off-white — card background
+  accent3: "2B5A8A",   // Light navy — decorative circles, links
   bg:      "FFFFFF",   // White — content bg
-  cardBg:  "F8F9FA",   // Cool gray — card background
-  body:    "1A1A2E",   // Near-black — body text
+  body:    "2D2D2D",   // Near-black — body text
   muted:   "6B7280",   // Gray — citations
-  rule:    "E5E7EB",   // Light gray — dividers
+  rule:    "D1D5DB",   // Light gray — dividers
   white:   "FFFFFF",
 };
 ```
@@ -57,55 +54,55 @@ const F = {
 
 ### Title Slide
 
-Blue background with a large translucent sky‑blue circle in the upper‑right and a small orange dot. Orange accent line below the title area. Darker band at the bottom with an orange separator.
+Deep navy background with a large translucent lighter-navy circle in the upper-right and a small gold dot. Gold accent line below the title area. Lighter band at the bottom with a gold separator.
 
 ```text
 ┌─────────────────────────────────────────────────────┐
 │                                           ╭────╮    │
 │                                          ╱      ╲   │  large translucent circle
-│  Literature Review · Journal Club        │  ○   │   │  + small orange dot
+│  Literature Review · Journal Club        │  ○   │   │  + small gold dot
 │                                          ╲      ╱   │
 │  Full Paper Title in Georgia Serif        ╰────╯    │
 │  (2-3 lines)                                         │
 │                                                     │
-│  ────  <-- orange rule                               │
+│  ────  <-- gold rule                                 │
 │  Author1, Author2, et al.                            │
 │  Journal Name  |  Date  |  IF: X.X                  │
 │  DOI: 10.xxxx/xxxx                                   │
-│──────────────────────────────────────────────────────│  orange line
-│  Literature Review Presentation                      │  darker blue band
+│──────────────────────────────────────────────────────│  gold line
+│  Literature Review Presentation                      │  lighter navy band
 └─────────────────────────────────────────────────────┘
 ```
 
 ```javascript
 function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quartile) {
   const slide = pres.addSlide();
-  // Deep blue base
+  // Deep navy base
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0072B2" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "1A3A5C" },
   });
   // Large translucent decorative circle (top-right)
   slide.addShape(pres.shapes.OVAL, {
     x: 7.0, y: -1.0, w: 4.0, h: 4.0,
-    fill: { color: "56B4E9", transparency: 70 },
+    fill: { color: "2B5A8A", transparency: 60 },
   });
-  // Small orange decorative dot
+  // Small gold decorative dot
   slide.addShape(pres.shapes.OVAL, {
     x: 8.5, y: 2.6, w: 0.4, h: 0.4,
-    fill: { color: "E69F00", transparency: 30 },
+    fill: { color: "C9A84C", transparency: 30 },
   });
-  // Darker bottom band
+  // Lighter bottom band
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.5, w: 10, h: 1.125, fill: { color: "00508A" },
+    x: 0, y: 4.5, w: 10, h: 1.125, fill: { color: "2B5A8A" },
   });
-  // Orange separator line
+  // Gold separator line
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.5, w: 10, h: 0.04, fill: { color: "E69F00" },
+    x: 0, y: 4.5, w: 10, h: 0.04, fill: { color: "C9A84C" },
   });
   // Label
   slide.addText("Literature Review  ·  Journal Club", {
     x: 0.8, y: 0.5, w: 8.4, h: 0.4,
-    fontSize: 14, fontFace: "Arial", color: "B3D4F0",
+    fontSize: 14, fontFace: "Arial", color: "B8C9E0",
   });
   // Title (SERIF)
   slide.addText(title, {
@@ -113,14 +110,14 @@ function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quar
     fontSize: 32, fontFace: "Georgia", color: "FFFFFF",
     bold: true, valign: "top", margin: 0,
   });
-  // Orange accent rule
+  // Gold accent rule
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0.8, y: 3.2, w: 1.5, h: 0.04, fill: { color: "E69F00" },
+    x: 0.8, y: 3.2, w: 1.5, h: 0.04, fill: { color: "C9A84C" },
   });
   // Authors
   slide.addText(authors, {
     x: 0.8, y: 3.45, w: 8.4, h: 0.35,
-    fontSize: 15, fontFace: "Arial", color: "B3D4F0",
+    fontSize: 15, fontFace: "Arial", color: "B8C9E0",
   });
   // Info block
   slide.addText(
@@ -132,7 +129,7 @@ function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quar
   // Bottom label
   slide.addText("Literature Review Presentation", {
     x: 0.8, y: 5.1, w: 8.4, h: 0.25,
-    fontSize: 12, fontFace: "Arial", color: "E69F00",
+    fontSize: 12, fontFace: "Arial", color: "C9A84C",
   });
   return slide;
 }
@@ -142,12 +139,12 @@ function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quar
 
 ### Content Slide
 
-White background. Thin blue top bar. Small orange circle top-right as a visual anchor. Blue left accent bar. Georgia title with light gray divider.
+White background. Thin navy top bar. Small gold circle top-right as a visual anchor. Navy left accent bar. Georgia title with light gray divider.
 
-```
+```text
 ┌─────────────────────────────────────────────────────┐
-│█                                            ●       │  blue bar + orange dot
-│█  Action Title in Georgia Serif, 28pt bold blue     │
+│█                                            ●       │  navy bar + gold dot
+│█  Action Title in Georgia Serif, 28pt bold navy     │
 │█  ────────────────────────────────────────────────  │
 │█                                                     │
 │█  • Bullet point text in Arial 18pt                  │
@@ -155,7 +152,7 @@ White background. Thin blue top bar. Small orange circle top-right as a visual a
 │█  • Third bullet point                               │
 │█                                                     │
 │█  ┌─────────────────────────────────────────┐ ●     │
-│█  │  Key Finding Card (gray, orange accent)  │       │
+│█  │  Key Finding Card (warm, gold accent)    │       │
 │█  └─────────────────────────────────────────┘       │
 │█                                                     │
 │█                                              N / N  │
@@ -166,28 +163,28 @@ White background. Thin blue top bar. Small orange circle top-right as a visual a
 function contentSlide(title, n) {
   const slide = pres.addSlide();
   slide.background = { color: "FFFFFF" };
-  // Thin blue top bar
+  // Thin navy top bar
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.04, fill: { color: "0072B2" },
+    x: 0, y: 0, w: 10, h: 0.04, fill: { color: "1A3A5C" },
   });
-  // Small orange decorative dot (top-right)
+  // Small gold decorative dot (top-right)
   slide.addShape(pres.shapes.OVAL, {
     x: 9.2, y: 0.15, w: 0.35, h: 0.35,
-    fill: { color: "E69F00" },
+    fill: { color: "C9A84C" },
   });
-  // Blue left accent bar (starts below top bar)
+  // Navy left accent bar (starts below top bar)
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0.5, w: 0.06, h: 4.6, fill: { color: "0072B2" },
+    x: 0, y: 0.5, w: 0.06, h: 4.6, fill: { color: "1A3A5C" },
   });
   // Title
   slide.addText(title, {
     x: 0.4, y: 0.2, w: 8.8, h: 0.7,
-    fontSize: 28, fontFace: "Georgia", color: "0072B2",
+    fontSize: 28, fontFace: "Georgia", color: "1A3A5C",
     bold: true, valign: "top", margin: 0,
   });
   // Divider
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0.4, y: 0.9, w: 8.8, h: 0.02, fill: { color: "E5E7EB" },
+    x: 0.4, y: 0.9, w: 8.8, h: 0.02, fill: { color: "D1D5DB" },
   });
   addSlideNum(slide, n);
   return slide;
@@ -198,30 +195,30 @@ function contentSlide(title, n) {
 
 ### Highlight Card
 
-Rounded card with an orange left accent stripe and a small sky‑blue dot in the top‑right corner. Use for key findings.
+Rounded card with a gold left accent stripe and a small navy-blue dot in the top-right corner.
 
 ```javascript
 function addHighlightCard(slide, text, y) {
   // Card body
   slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
     x: 0.4, y: y, w: 9.2, h: 0.75,
-    fill: { color: "F8F9FA" },
-    line: { color: "E5E7EB", width: 0.5 },
+    fill: { color: "F8F6F0" },
+    line: { color: "D1D5DB", width: 0.5 },
     rectRadius: 0.06,
   });
-  // Orange left accent
+  // Gold left accent
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0.4, y: y, w: 0.06, h: 0.75, fill: { color: "E69F00" },
+    x: 0.4, y: y, w: 0.06, h: 0.75, fill: { color: "C9A84C" },
   });
-  // Small blue decorative dot on card
+  // Small navy decorative dot on card
   slide.addShape(pres.shapes.OVAL, {
     x: 9.3, y: y + 0.15, w: 0.2, h: 0.2,
-    fill: { color: "56B4E9" },
+    fill: { color: "2B5A8A" },
   });
   // Text
   slide.addText(text, {
     x: 0.65, y: y + 0.05, w: 8.5, h: 0.65,
-    fontSize: 16, fontFace: "Arial", color: "1A1A2E",
+    fontSize: 16, fontFace: "Arial", color: "1A3A5C",
     valign: "middle",
   });
 }
@@ -235,21 +232,21 @@ Use for a large number or result with a description.
 
 ```javascript
 function addStatBox(slide, number, label, y) {
-  // Sky blue circle behind number
+  // Lighter navy circle behind number
   slide.addShape(pres.shapes.OVAL, {
     x: 0.5, y: y + 0.05, w: 0.9, h: 0.9,
-    fill: { color: "56B4E9", transparency: 80 },
+    fill: { color: "2B5A8A", transparency: 70 },
   });
   // The large number
   slide.addText(number, {
     x: 0.5, y: y + 0.05, w: 0.9, h: 0.9,
-    fontSize: 28, fontFace: "Arial", color: "0072B2",
+    fontSize: 28, fontFace: "Arial", color: "1A3A5C",
     bold: true, align: "center", valign: "middle",
   });
   // Description
   slide.addText(label, {
     x: 1.6, y: y + 0.05, w: 7.8, h: 0.9,
-    fontSize: 16, fontFace: "Arial", color: "1A1A2E",
+    fontSize: 16, fontFace: "Arial", color: "2D2D2D",
     valign: "middle",
   });
 }
@@ -259,23 +256,23 @@ function addStatBox(slide, number, label, y) {
 
 ### TOC Slide
 
-Blue background with a large semi‑transparent circle sweeping in from the bottom‑left. Orange top bar. White text.
+Deep navy background with a large semi-transparent circle sweeping in from the bottom-left. Gold top bar.
 
 ```javascript
 function tocSlide(sections) {
   const slide = pres.addSlide();
-  // Blue base
+  // Navy base
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0072B2" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "1A3A5C" },
   });
   // Large decorative circle bottom-left
   slide.addShape(pres.shapes.OVAL, {
     x: -1.0, y: 3.5, w: 3.5, h: 3.5,
-    fill: { color: "56B4E9", transparency: 75 },
+    fill: { color: "2B5A8A", transparency: 65 },
   });
-  // Orange top bar
+  // Gold top bar
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.04, fill: { color: "E69F00" },
+    x: 0, y: 0, w: 10, h: 0.04, fill: { color: "C9A84C" },
   });
   // Title
   slide.addText("Table of Contents", {
@@ -304,19 +301,19 @@ function tocSlide(sections) {
 function endSlide() {
   const slide = pres.addSlide();
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0072B2" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "1A3A5C" },
   });
   // Decorative circle
   slide.addShape(pres.shapes.OVAL, {
     x: 6.0, y: 0.5, w: 5.0, h: 5.0,
-    fill: { color: "56B4E9", transparency: 80 },
+    fill: { color: "2B5A8A", transparency: 70 },
   });
   // Bottom band
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.5, w: 10, h: 1.125, fill: { color: "00508A" },
+    x: 0, y: 4.5, w: 10, h: 1.125, fill: { color: "2B5A8A" },
   });
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.5, w: 10, h: 0.04, fill: { color: "E69F00" },
+    x: 0, y: 4.5, w: 10, h: 0.04, fill: { color: "C9A84C" },
   });
   slide.addText("Thank You", {
     x: 0.8, y: 1.8, w: 8.4, h: 0.8,
@@ -325,7 +322,7 @@ function endSlide() {
   });
   slide.addText("Questions & Discussion", {
     x: 0.8, y: 2.7, w: 8.4, h: 0.6,
-    fontSize: 22, fontFace: "Arial", color: "E69F00",
+    fontSize: 22, fontFace: "Arial", color: "C9A84C",
     align: "center",
   });
   return slide;

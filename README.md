@@ -94,10 +94,10 @@ Slide count adapts to content. These are the required sections:
 
 | Template | Alias | Style |
 | :------- | :---- | :---- |
-| Academic Navy | `navy` (default) | Blue + orange, decorative circles, serif titles, color‑blind friendly |
-| Academic Teal | `teal` | Teal + pink, overlapping circles, diamond accents, medical |
+| Academic Navy | `navy` (default) | Deep navy + gold, decorative circles, serif titles |
+| Academic Teal | `teal` | Purple + pink, overlapping circles, diamond accents, medical |
 | Slate Modern | `slate` | Slate + vermillion, triangle corner cuts, chevrons, tech |
-| Nature Dark | `nature` | Midnight + sky blue/orange, geometric dot line art, premium |
+| Nature Dark | `nature` | Warm ivory + muted blue/gold, geometric dot line art, premium |
 
 ```bash
 /paper2ppt -t teal 10.1186/s12913-026-14482-6
