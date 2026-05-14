@@ -94,10 +94,10 @@ Slide count adapts to content. These are the required sections:
 
 | Template | Alias | Style |
 | :------- | :---- | :---- |
-| Academic Navy | `navy` (default) | Deep navy + blue, professional |
-| Academic Teal | `teal` | Teal + green, fresh, medical |
-| Slate Modern | `slate` | Dark slate + indigo, tech |
-| Nature Dark | `nature` | Midnight + gold, premium |
+| Academic Navy | `navy` (default) | Blue + orange, decorative circles, serif titles, color‑blind friendly |
+| Academic Teal | `teal` | Teal + pink, overlapping circles, diamond accents, medical |
+| Slate Modern | `slate` | Slate + vermillion, triangle corner cuts, chevrons, tech |
+| Nature Dark | `nature` | Midnight + sky blue/orange, geometric dot line art, premium |
 
 ```bash
 /paper2ppt -t teal 10.1186/s12913-026-14482-6
@@ -107,22 +107,35 @@ Slide count adapts to content. These are the required sections:
 
 ```text
 paper2ppt/
-├── SKILL.md                          # Entry point & workflow (731 lines)
+├── SKILL.md                          # Entry point & workflow (890 lines)
 ├── README.md                         # English readme
 ├── README.zh.md                      # Chinese readme
-└── references/
-    └── publisher_patterns.md         # Publisher-specific extraction patterns (362 lines)
+├── references/
+│   └── publisher_patterns.md         # Publisher-specific extraction patterns (362 lines)
+└── templates/
+    ├── academic-navy.md              # Navy + orange (color‑blind friendly)
+    ├── academic-teal.md              # Teal + pink
+    ├── slate-modern.md               # Slate + vermillion, geometric
+    ├── nature-dark.md                # Midnight + sky blue/orange, premium
+    └── samples/
+        ├── generate_all.js           # Sample PPTX generator
+        ├── template_navy.pptx
+        ├── template_teal.pptx
+        ├── template_slate.pptx
+        └── template_nature.pptx
 ```
 
 ## Design Standards
 
+All templates use color‑blind friendly palettes (Wong 2011 *Nature Methods*) — distinguishable by protanopia, deuteranopia, and tritanopia. Each template enriches slides with decorative shapes (circles, diamonds, triangles), accent bars, and card elements.
+
 | Rule | Detail |
 | :--- | :----- |
-| Color | Navy `1F4E79` primary, white bg, gray muted |
-| Font | Arial throughout (title 26pt / body 18pt / cite 11pt) |
-| Layout | 0.5" uniform margin, action title + divider + content |
+| Colors | 4 color‑blind friendly palettes, never red‑green alone, shapes reinforce color |
+| Font | Georgia serif (navy/nature) or Arial (teal/slate), body 18pt |
+| Layout | Action title + divider + content, decorative accent elements |
 | Figures | Left-right layout, aspect-ratio preserved |
-| Tables | Navy header, alternating row colors, clean border |
+| Tables | Colored header, alternating row colors, clean border |
 
 ## Error Recovery
 

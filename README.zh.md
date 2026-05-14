@@ -89,10 +89,10 @@ pip install pymupdf               # PDF 提取（可选）
 
 | 模板 | 别名 | 风格 |
 | :--- | :--- | :--- |
-| Academic Navy | `navy`（默认） | 深蓝 + 蓝，专业学术 |
-| Academic Teal | `teal` | 青绿 + 绿，医学健康 |
-| Slate Modern | `slate` | 石板灰 + 靛蓝，现代科技 |
-| Nature Dark | `nature` | 深午夜 + 金色，高端 |
+| Academic Navy | `navy`（默认） | 蓝 + 橙，装饰圆形，衬线标题，色盲友好 |
+| Academic Teal | `teal` | 青绿 + 粉，重叠圆形，菱形装饰，医学 |
+| Slate Modern | `slate` | 石板灰 + 朱红，三角切角，折线装饰，科技 |
+| Nature Dark | `nature` | 午夜 + 天蓝/橙，几何点线，高端 |
 
 ```bash
 /paper2ppt -t teal 10.1186/s12913-026-14482-6
@@ -102,11 +102,22 @@ pip install pymupdf               # PDF 提取（可选）
 
 ```text
 paper2ppt/
-├── SKILL.md                          # Skill 入口和工作流（731 行）
+├── SKILL.md                          # Skill 入口和工作流（890 行）
 ├── README.md                         # 英文说明
 ├── README.zh.md                      # 中文说明
-└── references/
-    └── publisher_patterns.md         # 各出版商图片/表格提取模式（362 行）
+├── references/
+│   └── publisher_patterns.md         # 各出版商图片/表格提取模式（362 行）
+└── templates/
+    ├── academic-navy.md              # 蓝 + 橙（色盲友好）
+    ├── academic-teal.md              # 青绿 + 粉
+    ├── slate-modern.md               # 石板灰 + 朱红，几何风格
+    ├── nature-dark.md                # 午夜 + 天蓝/橙，高端
+    └── samples/
+        ├── generate_all.js           # 示例 PPTX 生成器
+        ├── template_navy.pptx
+        ├── template_teal.pptx
+        ├── template_slate.pptx
+        └── template_nature.pptx
 ```
 
 ## 设计规范
