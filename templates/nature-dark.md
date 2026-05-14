@@ -1,11 +1,17 @@
-# Template: Nature Dark
+# Template: Nature Dark (Enhanced)
 
-Premium dark theme inspired by Nature and high-impact journal presentation styles. Sophisticated, high-contrast, visually striking.
+Premium midnight + gold theme with thin serif titles, generous whitespace, and elegant gold accents. Inspired by high-impact journal aesthetics.
 
 ```
 Theme ID: nature-dark
-Alias:    nature, dark, premium, high-impact
+Alias:    nature, dark, premium, gold, high-impact
 ```
+
+---
+
+## Visual Impression
+
+Deep midnight background (`0F0F1A`) with warm gold accents. Georgia serif for the paper title. Extremely clean — no extraneous elements. Content slides use white with a thin gold bar at top. Key findings in dark cards with gold borders. Maximum contrast, minimum clutter. Premium, confident, restrained.
 
 ---
 
@@ -13,14 +19,15 @@ Alias:    nature, dark, premium, high-impact
 
 ```javascript
 const C = {
-  primary: "1A1A2E",   // Deep midnight — title slide bg
-  accent:  "D4A843",   // Gold/amber — section markers, highlights
-  accent2: "E8C66A",   // Light gold — secondary accents
-  bg:      "FFFFFF",   // White — content slide background
-  body:    "1A1A2E",   // Midnight — body text
-  muted:   "6B7280",   // Gray — citations, slide numbers
-  rule:    "D1D5DB",   // Light gray — divider lines
-  lightBg: "FFFBEB",   // Very light gold — callout box fill
+  primary: "0F0F1A",   // Deep midnight — title bg
+  primary2:"1A1A2E",   // Slightly lighter midnight — band
+  accent:  "D4A843",   // Gold — highlights, rules, borders
+  accent2: "F5E6C8",   // Light gold — card fill
+  bg:      "FFFFFF",   // White — content bg
+  cardBg:  "FDFBF7",   // Warm white — card background
+  body:    "1F1F2E",   // Near-black — body text
+  muted:   "6B7280",   // Gray — citations
+  rule:    "E5E7EB",   // Light gray — dividers
   white:   "FFFFFF",
 };
 ```
@@ -29,8 +36,9 @@ const C = {
 
 ```javascript
 const F = {
-  face: "Arial",
-  title: 26,
+  titleFace: "Georgia",   // Serif for main title slide
+  face: "Arial",          // Sans-serif for body
+  title: 28,
   subtitle: 20,
   body: 18,
   small: 14,
@@ -38,117 +46,226 @@ const F = {
 };
 ```
 
-## Slide Layouts
+---
+
+## Slide Designs
+
+---
 
 ### Title Slide
-- Deep midnight background (`1A1A2E`) 
-- Subtle gold accent band at top (h=0.06, `D4A843`)
-- "Literature Review · Journal Club" label (14pt, gold `D4A843`)
-- Paper title: 28pt bold white
-- Authors: 15pt warm gray (`9CA3AF`)
-- Thin gold accent rule: 1.5" wide
-- Journal info: 13pt white
-- Bottom accent band: y=4.8, gold `D4A843`
 
-### Content Slides
-- White background
-- Gold thin top accent (h=0.06, `D4A843`)
-- Action title: 26pt bold midnight (`1A1A2E`)
-- Thin divider: y=0.95, warm gray
-- Body text: 18pt midnight
-- Bullets: standard
+Dark midnight with extremely thin gold top bar. Serif title. Very sparse.
 
-### TOC Slide
-- Deep midnight background
-- Small gold top accent bar (h=0.06)
-- "Table of Contents": 28pt bold white
-- Section list: 22pt white, with gold dot markers
-- Bottom gold accent bar
-
-### End Slide
-- Matching midnight + gold accents
-- "Thank You": 36pt bold white
-- "Questions & Discussion": 22pt gold
-
-## Code Snippets
+```
+┌─────────────────────────────────────────────────────┐
+│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁  │  gold hairline (h=0.03)
+│                                                     │
+│  Literature Review · Journal Club                    │  13pt gold Arial
+│                                                     │
+│                                                     │
+│  Full Paper Title in Georgia Serif                  │  32pt bold white, Georgia
+│  (2-3 lines)                                        │  generous top space
+│                                                     │
+│                                                     │
+│  ───                                                 │  gold rule (w=1.0)
+│                                                     │
+│  Author1, Author2, et al.                            │  14pt warm gray
+│                                                     │
+│  Journal Name                                        │  12pt white
+│  Published: Date  |  Vol(Issue):Pages                │
+│  IF: X.X  |  JCR: QX  |  DOI: 10.xxxx/xxxx          │
+│                                                     │
+│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁  │  gold hairline bottom
+│  Literature Review Presentation                      │  11pt gold
+└─────────────────────────────────────────────────────┘
+```
 
 ```javascript
-// Title slide
 function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quartile) {
   const slide = pres.addSlide();
-  // Dark base
+  // Deep midnight base
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625,
-    fill: { color: "1A1A2E" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0F0F1A" },
   });
-  // Gold top accent bar
+  // Thin gold top hairline
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.06,
-    fill: { color: "D4A843" },
+    x: 0, y: 0, w: 10, h: 0.03, fill: { color: "D4A843" },
   });
-  // Gold bottom accent bar
+  // Thin gold bottom hairline
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.8, w: 10, h: 0.06,
-    fill: { color: "D4A843" },
+    x: 0, y: 5.35, w: 10, h: 0.03, fill: { color: "D4A843" },
   });
   // Label
   slide.addText("Literature Review  ·  Journal Club", {
-    x: 0.7, y: 0.5, w: 8.6, h: 0.4,
-    fontSize: 14, fontFace: "Arial", color: "D4A843",
+    x: 0.8, y: 0.5, w: 8.4, h: 0.4,
+    fontSize: 13, fontFace: "Arial", color: "D4A843",
   });
-  // Title
+  // Title (SERIF — larger, more space)
   slide.addText(title, {
-    x: 0.7, y: 1.3, w: 8.6, h: 1.6,
-    fontSize: 28, fontFace: "Arial", color: "FFFFFF",
+    x: 0.8, y: 1.4, w: 8.4, h: 1.8,
+    fontSize: 32, fontFace: "Georgia", color: "FFFFFF",
     bold: true, valign: "top", margin: 0,
+  });
+  // Short gold rule
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0.8, y: 3.4, w: 1.0, h: 0.025, fill: { color: "D4A843" },
   });
   // Authors
   slide.addText(authors, {
-    x: 0.7, y: 2.9, w: 8.6, h: 0.4,
-    fontSize: 15, fontFace: "Arial", color: "9CA3AF",
+    x: 0.8, y: 3.6, w: 8.4, h: 0.35,
+    fontSize: 14, fontFace: "Arial", color: "9CA3AF",
   });
-  // Gold accent rule
-  slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0.7, y: 3.3, w: 1.5, h: 0.03,
-    fill: { color: "D4A843" },
-  });
-  // Journal info
+  // Info block (compact)
   slide.addText(
     `${journal}\n${dateStr}  |  ${volIssue}\nIF: ${ifVal}  |  JCR: ${quartile}\nDOI: ${doi}`,
-    { x: 0.7, y: 3.5, w: 8.6, h: 0.7,
-      fontSize: 13, fontFace: "Arial", color: "FFFFFF",
-      valign: "top", lineSpacingMultiple: 1.3 }
+    { x: 0.8, y: 4.0, w: 8.4, h: 0.55,
+      fontSize: 12, fontFace: "Arial", color: "FFFFFF",
+      valign: "top", lineSpacingMultiple: 1.2 }
   );
+  // Bottom label
   slide.addText("Literature Review Presentation", {
-    x: 0.7, y: 5.0, w: 8.6, h: 0.3,
-    fontSize: 12, fontFace: "Arial", color: "D4A843",
+    x: 0.8, y: 5.05, w: 8.4, h: 0.25,
+    fontSize: 11, fontFace: "Arial", color: "D4A843",
   });
   return slide;
 }
 ```
 
+---
+
+### Content Slide
+
+White with thin gold top bar. Very clean. Maximum whitespace.
+
+```
+┌─────────────────────────────────────────────────────┐
+│▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁  │  gold hairline (h=0.03)
+│                                                     │
+│  Action Title 28pt bold midnight                     │
+│  ────────────────────────────────────────────────   │  thin gray divider
+│                                                     │
+│  • Bullet point in Arial 18pt                        │
+│  • Second bullet point                               │
+│  • Third bullet point                                │
+│                                                     │
+│  ┌─────────────────────────────────────────┐         │
+│  │  Key Finding (warm card, gold border)    │         │
+│  │  Minimal, elegant presentation           │         │
+│  └─────────────────────────────────────────┘         │
+│                                                     │
+│                                              N / N   │
+└─────────────────────────────────────────────────────┘
+```
+
 ```javascript
-// Content slide
 function contentSlide(title, n) {
   const slide = pres.addSlide();
   slide.background = { color: "FFFFFF" };
-  // Gold top accent
+  // Gold hairline top
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.06,
-    fill: { color: "D4A843" },
+    x: 0, y: 0, w: 10, h: 0.03, fill: { color: "D4A843" },
   });
   // Title
   slide.addText(title, {
-    x: 0.5, y: 0.2, w: 9.0, h: 0.75,
-    fontSize: 26, fontFace: "Arial", color: "1A1A2E",
+    x: 0.6, y: 0.25, w: 8.8, h: 0.7,
+    fontSize: 28, fontFace: "Georgia", color: "0F0F1A",
     bold: true, valign: "top", margin: 0,
   });
   // Divider
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0.5, y: 0.95, w: 9.0, h: 0.025,
-    fill: { color: "D1D5DB" },
+    x: 0.6, y: 0.95, w: 8.8, h: 0.02, fill: { color: "E5E7EB" },
   });
   addSlideNum(slide, n);
+  return slide;
+}
+```
+
+---
+
+### Premium Card (for Key Findings)
+
+Warm-toned card with thin gold border. Elegant, understated.
+
+```javascript
+function addPremiumCard(slide, text, y) {
+  // Card with gold border
+  slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
+    x: 0.6, y: y, w: 8.8, h: 0.7,
+    fill: { color: "FDFBF7" },
+    line: { color: "D4A843", width: 0.75 },
+    rectRadius: 0.04,
+  });
+  // Text
+  slide.addText(text, {
+    x: 0.8, y: y + 0.05, w: 8.4, h: 0.6,
+    fontSize: 16, fontFace: "Arial", color: "0F0F1A",
+    valign: "middle",
+  });
+}
+```
+
+---
+
+### TOC Slide
+
+Dark midnight, gold hairline. Text only. Maximum restraint.
+
+```javascript
+function tocSlide(sections) {
+  const slide = pres.addSlide();
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0F0F1A" },
+  });
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 0, w: 10, h: 0.03, fill: { color: "D4A843" },
+  });
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 5.35, w: 10, h: 0.03, fill: { color: "D4A843" },
+  });
+  slide.addText("Table of Contents", {
+    x: 0.8, y: 0.6, w: 8.4, h: 0.6,
+    fontSize: 28, fontFace: "Georgia", color: "FFFFFF",
+    bold: true, margin: 0,
+  });
+  const items = sections.map((s, i) => ({
+    text: s,
+    options: { bullet: false, breakLine: i < sections.length - 1 },
+  }));
+  slide.addText(items, {
+    x: 0.8, y: 1.6, w: 8.4, h: 3.0,
+    fontSize: 22, fontFace: "Arial", color: "FFFFFF",
+    paraSpaceAfter: 14, valign: "top",
+  });
+  return slide;
+}
+```
+
+---
+
+### End Slide
+
+```javascript
+function endSlide() {
+  const slide = pres.addSlide();
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0F0F1A" },
+  });
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 0, w: 10, h: 0.03, fill: { color: "D4A843" },
+  });
+  slide.addShape(pres.shapes.RECTANGLE, {
+    x: 0, y: 5.35, w: 10, h: 0.03, fill: { color: "D4A843" },
+  });
+  slide.addText("Thank You", {
+    x: 0.8, y: 1.8, w: 8.4, h: 0.8,
+    fontSize: 38, fontFace: "Georgia", color: "FFFFFF",
+    bold: true, align: "center",
+  });
+  slide.addText("Questions & Discussion", {
+    x: 0.8, y: 2.7, w: 8.4, h: 0.6,
+    fontSize: 22, fontFace: "Arial", color: "D4A843",
+    align: "center",
+  });
   return slide;
 }
 ```
