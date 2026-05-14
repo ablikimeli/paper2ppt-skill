@@ -1,30 +1,33 @@
-# Template: Academic Teal (Enhanced)
+# Template: Academic Teal (Redesigned)
 
-Fresh teal + coral medical style with card layouts, color-coded section badges, and rounded corner elements.
+Fresh teal + pink style using a color‑blind friendly palette. Rounded overlapping elements, pill badges, and decorative diamond accents for a clean clinical feel.
 
-```
+```text
 Theme ID: academic-teal
-Alias:    teal, medical, health
+Alias:    teal, medical, health, forest
 ```
 
 ---
 
 ## Visual Impression
 
-Teal primary with warm coral accent. Clean sans-serif throughout (Arial). Content slides feature a full-width teal header band with white text. Key results in rounded white cards with coral left border. Section badges (colored pills) for method/result/discussion labels. Crisp, clinical, modern.
+Teal (`009E73`) primary with warm pink (`CC79A7`) accents. Clean sans-serif throughout (Arial). The title slide features overlapping circular shapes in the background for depth. Content slides have a full-width teal header band with a small diamond decoration. Key results in rounded white cards with a pink left border and a small diamond accent. Crisp, clinical, modern, accessible.
 
 ---
 
-## Color Palette
+## Color Palette (Color‑Blind Friendly)
+
+Uses the Wong 2011 *Nature Methods* accessible palette.
 
 ```javascript
 const C = {
-  primary: "0D7377",   // Deep teal — title bg, header band
-  primary2:"14A39A",   // Lighter teal — gradient band
-  accent:  "E8636D",   // Coral — highlights, badges
-  accent2: "FDE8E8",   // Light coral — card fill
+  primary: "009E73",   // Teal — title bg, header band
+  primary2:"007A55",   // Darker teal — bottom band
+  accent:  "CC79A7",   // Pink — highlights, badges, card accents
+  accent2: "FCE4EC",   // Light pink — card fill
+  accent3: "D5F5E3",   // Very light teal — decorative circles
   bg:      "FFFFFF",   // White — content bg
-  cardBg:  "F0FDFA",   // Very light teal — card background
+  cardBg:  "F0FDF4",   // Light green — card background
   body:    "1F2937",   // Dark slate — body text
   muted:   "6B7280",   // Gray — citations
   rule:    "D1D5DB",   // Light gray — dividers
@@ -38,6 +41,7 @@ const C = {
 const F = {
   face: "Arial",        // Sans-serif throughout (medical standard)
   title: 28,
+  subtitle: 20,
   body: 18,
   small: 14,
   cite: 11,
@@ -52,69 +56,84 @@ const F = {
 
 ### Title Slide
 
-Teal gradient with coral accent elements.
+Teal background with two overlapping translucent circles (teal and light teal) creating depth. Pink accent bar at top. Pink rule below title area.
 
-```
+```text
 ┌─────────────────────────────────────────────────────┐
-│  ██████████████████████████████████████████████████  │  coral top bar (h=0.06)
+│  ██████████████████████████████████████████████████  │  pink top bar (h=0.06)
 │                                                     │
-│  Literature Review  ·  Journal Club                  │  14pt Arial light teal
+│  ╭────────────╮                                     │
+│  │  ○○        │  overlapping decorative circles      │
+│  ╰────────────╯                                     │
+│  Literature Review · Journal Club                    │
 │                                                     │
-│  Full Paper Title in Arial                           │  30pt bold white
+│  Full Paper Title in Arial Bold                      │
 │  (2-3 lines)                                        │
 │                                                     │
-│  ────                                                │  coral rule (w=1.5)
+│  ────  <-- pink rule                                 │
+│  Author1, Author2, et al.                            │
+│  Journal Name  |  Date  |  IF: X.X                  │
 │                                                     │
-│  Author1, Author2, et al.                            │  15pt light teal
-│                                                     │
-│  Journal Name                                        │  13pt white
-│  Published: Date  |  Vol(Issue):Pages                │
-│  IF: X.X  |  JCR: QX  |  DOI: 10.xxxx/xxxx          │
-│                                                     │
-├──────────────────────────────────────────────────────┤  lighter teal band y=4.2
-│  Literature Review Presentation                      │  12pt coral
+│──────────────────────────────────────────────────────│  darker teal band
+│  Literature Review Presentation                      │
 └─────────────────────────────────────────────────────┘
 ```
 
 ```javascript
 function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quartile) {
   const slide = pres.addSlide();
+  // Teal base
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0D7377" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "009E73" },
   });
-  // Coral top bar
+  // Decorative overlapping circles
+  slide.addShape(pres.shapes.OVAL, {
+    x: 6.5, y: -0.5, w: 3.5, h: 3.5,
+    fill: { color: "007A55", transparency: 60 },
+  });
+  slide.addShape(pres.shapes.OVAL, {
+    x: 7.5, y: 0.5, w: 2.5, h: 2.5,
+    fill: { color: "D5F5E3", transparency: 65 },
+  });
+  // Pink top bar
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.06, fill: { color: "E8636D" },
+    x: 0, y: 0, w: 10, h: 0.06, fill: { color: "CC79A7" },
   });
   // Bottom band
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.2, w: 10, h: 1.425, fill: { color: "14A39A" },
+    x: 0, y: 4.2, w: 10, h: 1.425, fill: { color: "007A55" },
   });
+  // Label
   slide.addText("Literature Review  ·  Journal Club", {
     x: 0.8, y: 0.5, w: 8.4, h: 0.4,
-    fontSize: 14, fontFace: "Arial", color: "99F6E4",
+    fontSize: 14, fontFace: "Arial", color: "D5F5E3",
   });
+  // Title
   slide.addText(title, {
     x: 0.8, y: 1.3, w: 8.4, h: 1.8,
     fontSize: 30, fontFace: "Arial", color: "FFFFFF",
     bold: true, valign: "top", margin: 0,
   });
+  // Authors
   slide.addText(authors, {
     x: 0.8, y: 3.1, w: 8.4, h: 0.4,
-    fontSize: 15, fontFace: "Arial", color: "A7F3D0",
+    fontSize: 15, fontFace: "Arial", color: "D5F5E3",
   });
+  // Pink rule
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0.8, y: 3.55, w: 1.5, h: 0.03, fill: { color: "E8636D" },
+    x: 0.8, y: 3.55, w: 1.5, h: 0.03, fill: { color: "CC79A7" },
   });
+  // Info
   slide.addText(
     `${journal}\n${dateStr}  |  ${volIssue}\nIF: ${ifVal}  |  JCR: ${quartile}\nDOI: ${doi}`,
     { x: 0.8, y: 3.7, w: 8.4, h: 0.6,
       fontSize: 13, fontFace: "Arial", color: "FFFFFF",
       valign: "top", lineSpacingMultiple: 1.3 }
   );
+  // Bottom label
   slide.addText("Literature Review Presentation", {
     x: 0.8, y: 5.0, w: 8.4, h: 0.3,
-    fontSize: 12, fontFace: "Arial", color: "E8636D",
+    fontSize: 12, fontFace: "Arial", color: "CC79A7",
   });
   return slide;
 }
@@ -124,23 +143,22 @@ function titleSlide(title, authors, journal, dateStr, volIssue, doi, ifVal, quar
 
 ### Content Slide
 
-White with full-width teal header band. Section pill badge.
+White with full-width teal header band. Pink pill badge for section labeling. Diamond‑shaped decorative element near the badge.
 
 ```
 ┌─────────────────────────────────────────────────────┐
 │████████████████████████████████████████████████████  │  teal header band (h=0.65)
 │  Action Title 28pt bold white                        │
 ├─────────────────────────────────────────────────────┤
-│  [RESULTS]  ← coral pill badge (small rounded rect)  │
+│  ◆  [RESULTS]  ← pink pill badge + diamond icon      │
 │                                                     │
 │  • Bullet point in Arial 18pt                        │
 │  • Second bullet point                               │
 │  • Third bullet point                                │
 │                                                     │
-│  ┌─────────────────────────────────────────┐        │
-│  │  Key Finding Card (white, coral border)   │        │
-│  │  Highlighted takeaway                     │        │
-│  └─────────────────────────────────────────┘        │
+│  ┌─────────────────────────────────────────┐ ◆     │
+│  │  Key Finding Card (white, pink accent)    │       │
+│  └─────────────────────────────────────────┘       │
 │                                                     │
 │                                              N / N  │
 └─────────────────────────────────────────────────────┘
@@ -150,26 +168,37 @@ White with full-width teal header band. Section pill badge.
 function contentSlide(title, n, badge) {
   const slide = pres.addSlide();
   slide.background = { color: "FFFFFF" };
-  // Full-width teal header band with white title
+  // Full-width teal header band
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.65, fill: { color: "0D7377" },
+    x: 0, y: 0, w: 10, h: 0.65, fill: { color: "009E73" },
   });
+  // Small decorative diamond
+  slide.addShape(pres.shapes.DIAMOND, {
+    x: 9.3, y: 0.15, w: 0.3, h: 0.3,
+    fill: { color: "D5F5E3" },
+  });
+  // Title in header
   slide.addText(title, {
     x: 0.5, y: 0.08, w: 9.0, h: 0.5,
     fontSize: 26, fontFace: "Arial", color: "FFFFFF",
     bold: true, valign: "middle", margin: 0,
   });
-  // Optional section badge (e.g., "METHODS", "RESULTS")
+  // Optional section badge
   if (badge) {
     slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
-      x: 0.5, y: 0.8, w: 1.2, h: 0.3,
-      fill: { color: "E8636D" },
+      x: 0.5, y: 0.8, w: 1.3, h: 0.3,
+      fill: { color: "CC79A7" },
       rectRadius: 0.04,
     });
     slide.addText(badge, {
-      x: 0.5, y: 0.8, w: 1.2, h: 0.3,
+      x: 0.5, y: 0.8, w: 1.3, h: 0.3,
       fontSize: 10, fontFace: "Arial", color: "FFFFFF",
       bold: true, align: "center", valign: "middle",
+    });
+    // Small diamond next to badge
+    slide.addShape(pres.shapes.DIAMOND, {
+      x: 1.9, y: 0.85, w: 0.18, h: 0.18,
+      fill: { color: "009E73" },
     });
   }
   addSlideNum(slide, n);
@@ -179,26 +208,60 @@ function contentSlide(title, n, badge) {
 
 ---
 
-### Result Card (for Key Findings)
+### Result Card
 
-White rounded card with coral left accent:
+White rounded card with pink left accent and a small diamond decoration.
 
 ```javascript
 function addResultCard(slide, text, y) {
-  // White card with border
+  // Card body
   slide.addShape(pres.shapes.ROUNDED_RECTANGLE, {
     x: 0.5, y: y, w: 9.0, h: 0.7,
     fill: { color: "FFFFFF" },
     line: { color: "D1D5DB", width: 0.5 },
     rectRadius: 0.06,
   });
-  // Coral left accent
+  // Pink left accent
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0.5, y: y, w: 0.06, h: 0.7, fill: { color: "E8636D" },
+    x: 0.5, y: y, w: 0.06, h: 0.7, fill: { color: "CC79A7" },
   });
+  // Small diamond decoration
+  slide.addShape(pres.shapes.DIAMOND, {
+    x: 9.2, y: y + 0.23, w: 0.18, h: 0.18,
+    fill: { color: "D5F5E3" },
+  });
+  // Text
   slide.addText(text, {
     x: 0.7, y: y + 0.05, w: 8.6, h: 0.6,
-    fontSize: 16, fontFace: "Arial", color: "0D7377",
+    fontSize: 16, fontFace: "Arial", color: "009E73",
+    valign: "middle",
+  });
+}
+```
+
+---
+
+### Stat Circle
+
+Use for highlighting a single key number.
+
+```javascript
+function addStatCircle(slide, number, label, y) {
+  // Large pink circle
+  slide.addShape(pres.shapes.OVAL, {
+    x: 0.6, y: y, w: 1.0, h: 1.0,
+    fill: { color: "CC79A7" },
+  });
+  // Number inside circle
+  slide.addText(number, {
+    x: 0.6, y: y, w: 1.0, h: 1.0,
+    fontSize: 24, fontFace: "Arial", color: "FFFFFF",
+    bold: true, align: "center", valign: "middle",
+  });
+  // Label
+  slide.addText(label, {
+    x: 1.8, y: y, w: 7.4, h: 1.0,
+    fontSize: 16, fontFace: "Arial", color: "1F2937",
     valign: "middle",
   });
 }
@@ -208,18 +271,29 @@ function addResultCard(slide, text, y) {
 
 ### TOC Slide
 
+Teal background with overlapping circular decorations. Pink top bar.
+
 ```javascript
 function tocSlide(sections) {
   const slide = pres.addSlide();
+  // Teal base
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0D7377" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "009E73" },
   });
+  // Decorative circles
+  slide.addShape(pres.shapes.OVAL, {
+    x: -1.0, y: 3.0, w: 4.0, h: 4.0,
+    fill: { color: "007A55", transparency: 65 },
+  });
+  slide.addShape(pres.shapes.OVAL, {
+    x: 7.5, y: -0.8, w: 3.0, h: 3.0,
+    fill: { color: "D5F5E3", transparency: 70 },
+  });
+  // Pink top bar
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.06, fill: { color: "E8636D" },
+    x: 0, y: 0, w: 10, h: 0.06, fill: { color: "CC79A7" },
   });
-  slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.2, w: 10, h: 1.425, fill: { color: "14A39A" },
-  });
+  // Title
   slide.addText("Table of Contents", {
     x: 0.8, y: 0.5, w: 8.4, h: 0.6,
     fontSize: 28, fontFace: "Arial", color: "FFFFFF",
@@ -246,13 +320,20 @@ function tocSlide(sections) {
 function endSlide() {
   const slide = pres.addSlide();
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "0D7377" },
+    x: 0, y: 0, w: 10, h: 5.625, fill: { color: "009E73" },
   });
-  slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 0, w: 10, h: 0.06, fill: { color: "E8636D" },
+  // Overlapping circles
+  slide.addShape(pres.shapes.OVAL, {
+    x: 6.0, y: 0.5, w: 5.0, h: 5.0,
+    fill: { color: "007A55", transparency: 65 },
   });
+  slide.addShape(pres.shapes.OVAL, {
+    x: -1.0, y: 3.0, w: 3.5, h: 3.5,
+    fill: { color: "D5F5E3", transparency: 70 },
+  });
+  // Bottom band
   slide.addShape(pres.shapes.RECTANGLE, {
-    x: 0, y: 4.2, w: 10, h: 1.425, fill: { color: "14A39A" },
+    x: 0, y: 4.2, w: 10, h: 1.425, fill: { color: "007A55" },
   });
   slide.addText("Thank You", {
     x: 0.8, y: 1.8, w: 8.4, h: 0.8,
@@ -261,7 +342,7 @@ function endSlide() {
   });
   slide.addText("Questions & Discussion", {
     x: 0.8, y: 2.7, w: 8.4, h: 0.6,
-    fontSize: 22, fontFace: "Arial", color: "E8636D",
+    fontSize: 22, fontFace: "Arial", color: "CC79A7",
     align: "center",
   });
   return slide;
