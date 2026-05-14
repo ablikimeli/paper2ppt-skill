@@ -85,6 +85,19 @@ pip install pymupdf               # PDF 提取（可选）
 | 论文链接 | `https://doi.org/...` | 自动识别 |
 | 标题搜索 | `"论文标题"` | CrossRef / PubMed / Google Scholar |
 
+## 设计模板
+
+| 模板 | 别名 | 风格 |
+| :--- | :--- | :--- |
+| Academic Navy | `navy`（默认） | 深蓝 + 蓝，专业学术 |
+| Academic Teal | `teal` | 青绿 + 绿，医学健康 |
+| Slate Modern | `slate` | 石板灰 + 靛蓝，现代科技 |
+| Nature Dark | `nature` | 深午夜 + 金色，高端 |
+
+```bash
+/paper2ppt -t teal 10.1186/s12913-026-14482-6
+```
+
 ## 文件结构
 
 ```text
