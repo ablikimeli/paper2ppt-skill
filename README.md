@@ -1,55 +1,46 @@
+[**中文**](README.zh.md) | [**English**](README.md)
+
+---
+
 # paper2ppt-skill
 
-> 从论文链接/DOI/PMID 自动生成精美学术文献汇报 PPT  
 > Generate academic literature review PPT from paper URL/DOI/PMID
 
 [![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-1F4E79)](https://claude.ai/code)
 
-A **Claude Code Skill** that generates a professional academic literature review PPT from a paper identifier — just paste a DOI, PMID, PMCID, or paper URL. Slide count adapts to paper content (8-15+ slides).
+A **Claude Code Skill** that generates a professional academic literature review PPT from a paper identifier. Slide count adapts to paper content.
 
-一个 **Claude Code Skill**，输入论文链接（或 DOI、PMID、PMCID），自动抓取元数据、影响因子、JCR 分区、论文图片和表格，生成精美的英文文献汇报 PPT。幻灯片数量根据论文内容自动调整。
+## Features
 
----
+- **Multiple input formats:** DOI, PMID, PMCID, paper URL, title search
+- **Auto metadata:** title, authors, journal, date, abstract from CrossRef
+- **Impact Factor & JCR quartile:** via WebSearch
+- **Auto figure download:** from publisher HTML or PDF fallback
+- **Academically styled:** action titles, navy color scheme, Arial font
+- **Graceful fallbacks:** text-only layout when figures unavailable; never crashes
 
-## Features / 功能
-
-- **Multiple input formats** / 多种输入方式: DOI, PMID, PMCID, paper URL, title search
-- **Auto metadata** / 自动元数据: title, authors, journal, date, abstract from CrossRef
-- **Impact Factor & JCR quartile** / IF 与 JCR 分区: via WebSearch
-- **Auto figure download** / 自动下载图片: from publisher HTML or PDF fallback
-- **English PPT** / 英文 PPT: academically styled, slide count adapts to content
-- **Graceful fallbacks** / 容错机制: text-only layout when figures unavailable
-
-## Installation / 安装
+## Installation
 
 ```bash
-# Enter your Claude Code skills directory
 cd .claude/skills/
-
-# Clone this repository
 git clone https://github.com/ablikimeli/paper2ppt-skill.git paper2ppt
 ```
 
-## Dependencies / 依赖
+## Dependencies
 
 ```bash
-# PPT generation
-npm install -g pptxgenjs
-
-# Content QA (optional)
-pip install "markitdown[pptx]"
-
-# PDF fallback (optional, for figure extraction)
-pip install pymupdf
+npm install -g pptxgenjs          # PPT generation
+pip install "markitdown[pptx]"    # Content QA (optional)
+pip install pymupdf               # PDF fallback (optional)
 ```
 
-## Usage / 使用方法
+## Usage
 
 Invoke in Claude Code:
 
 ```bash
 # By DOI
-/paper2ppt 10.1186/s12913-026-14482-6 请给我做出一个文献汇报PPT
+/paper2ppt 10.1186/s12913-026-14482-6 please make a literature review PPT
 
 # By PMID
 /paper2ppt PMID: 13170306
@@ -64,14 +55,14 @@ Invoke in Claude Code:
 /paper2ppt "latent tuberculosis infection cost-effectiveness China"
 ```
 
-## PPT Structure / PPT 结构
+## PPT Structure
 
-Slide count adapts to paper content. These are the core sections in order:
+Slide count adapts to content. These are the required sections:
 
 | Section | Slides | Description |
 | :------ | :----- | :---------- |
-| Title Slide | 1 | Paper info, IF, JCR quartile |
-| Table of Contents | 1 | Navigation overview |
+| Title Slide | 1 | Paper info, IF, JCR quartile, DOI |
+| Table of Contents | 1 | Navigation |
 | Background & Objectives | 1-2 | Rationale, gap, objectives |
 | Methods & Materials | 1-3 | Design, population, analysis |
 | Results | 1-4 | Key findings + figures/tables |
@@ -79,48 +70,49 @@ Slide count adapts to paper content. These are the core sections in order:
 | Inspirations | 1 | Implications & future directions |
 | End Page | 1 | Thank you / Q&A |
 
-> Slides are not fixed in number — simple papers may have 8-9 slides, while complex papers can reach 15+ slides. Each major finding gets its own slide.
+> Each major finding gets its own slide. Simple papers: 8-9 slides. Complex papers: 15+ slides.
 
-## Input Sources / 支持的数据源
+## Input Sources
 
 | Type | Example | Method |
 | :--- | :------ | :----- |
 | DOI | `10.1186/s12913-026-14482-6` | Direct |
 | PMID | `13170306` / `PMID: 13170306` | NCBI API to DOI |
 | PMCID | `PMC13170306` / `PMCID: PMC13170306` | NCBI API to DOI |
-| URL | `https://doi.org/...` / PubMed / Springer / etc. | Auto-detect |
+| URL | `https://doi.org/...` | Auto-detect |
 | Title | `"paper title"` | CrossRef / PubMed / Google Scholar |
 
-## File Structure / 文件结构
+## File Structure
 
-```
+```text
 paper2ppt/
 ├── SKILL.md                          # Entry point & workflow (731 lines)
-├── README.md                         # This file
+├── README.md                         # English readme
+├── README.zh.md                      # Chinese readme
 └── references/
     └── publisher_patterns.md         # Publisher-specific extraction patterns (362 lines)
 ```
 
-## Design Standards / 设计规范
+## Design Standards
 
-| Rule / 规范 | Detail / 说明 |
-| :---------- | :------------- |
-| Color / 配色 | Navy `1F4E79` primary, white bg, gray muted |
-| Font / 字体 | Arial throughout (title 26pt / body 18pt / cite 11pt) |
-| Layout / 版式 | 0.5" uniform margin, action title + divider + content |
-| Figures / 图片 | Left-right layout, aspect-ratio preserved |
-| Tables / 表格 | Navy header, alternating row colors, clean border |
+| Rule | Detail |
+| :--- | :----- |
+| Color | Navy `1F4E79` primary, white bg, gray muted |
+| Font | Arial throughout (title 26pt / body 18pt / cite 11pt) |
+| Layout | 0.5" uniform margin, action title + divider + content |
+| Figures | Left-right layout, aspect-ratio preserved |
+| Tables | Navy header, alternating row colors, clean border |
 
-## Error Recovery / 容错机制
+## Error Recovery
 
-| Failure / 失败场景 | Recovery / 恢复策略 |
-| :----------------- | :------------------ |
-| CrossRef unreachable | Fallback to NCBI E-utilities → WebSearch |
+| Failure | Recovery |
+| :------ | :------- |
+| CrossRef unreachable | Fallback to NCBI E-utilities / WebSearch |
 | Figure download fails | Skip figure, use text-only layout |
 | PDF download fails | Text-only PPT |
 | IF/JCR not found | Show "N/A", never fabricate |
 | Script syntax error | Fix per Node.js error, re-run |
 
-## License / 许可
+## License
 
 MIT
