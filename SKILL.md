@@ -289,20 +289,27 @@ for page in doc:
 
 ## Phase 5: Generate the PPTX
 
-### 5.1 Slide Structure (8 standard slides)
+### 5.1 Slide Structure (Flexible)
 
-| # | Slide | Key Content |
-|---|-------|-------------|
-| 1 | **Title Slide** | Paper title, authors, journal, date, volume/issue/pages, DOI, IF, JCR quartile |
-| 2 | **Table of Contents** | 6 numbered items overviewing the presentation |
-| 3 | **Background & Objectives** | Research rationale, knowledge gap, study objective(s) |
-| 4 | **Methods & Materials** | Study design, population, procedures, statistical analysis |
-| 5 | **Results** | Key findings with figures/tables (1 slide per major finding, up to 3) |
-| 6 | **Discussion & Conclusion** | Main findings, comparison with prior work, limitations |
-| 7 | **Inspirations** | Implications, methodological insights, future directions |
-| 8 | **End Page** | Thank you, Q&A, contact |
+Every literature review PPT must include these **core sections** in order. The number of slides per section depends on the paper's content depth.
 
-**Flexibility:** If the paper has complex methods, use 2 methods slides. If results are extensive, use 2-3 result slides. Total slides: 8-11.
+| Priority | Section | Required | Slides | Notes |
+|----------|---------|----------|--------|-------|
+| 1 | **Title Slide** | Yes | 1 | Always included |
+| 2 | **Table of Contents** | Yes | 1 | Always included |
+| 3 | **Background & Objectives** | Yes | 1-2 | Expand if complex background |
+| 4 | **Methods & Materials** | Yes | 1-3 | More slides for complex study designs |
+| 5 | **Results** | Yes | 1-4 | One slide per major finding or figure |
+| 6 | **Discussion & Conclusion** | Yes | 1-2 | Separate if both are substantive |
+| 7 | **Inspirations** | Yes | 1 | Always included |
+| 8 | **End Page** | Yes | 1 | Always included |
+
+**Rules:**
+- Each major finding gets its own results slide (do not cram multiple figures onto one slide)
+- Complex methods (modeling studies, multi-stage designs) deserve 2-3 methods slides
+- Simple papers can stay at 8-9 slides; extensive papers may reach 12-15 slides
+- Never add filler slides. Every slide must carry meaningful content.
+- Total slides = determined by content, not a fixed number
 
 ### 5.2 Design Rules
 
@@ -536,7 +543,9 @@ const C = {
 };
 const F = { face: "Arial", title: 26, body: 18, small: 14, cite: 11 };
 
-const TOTAL = 8;
+// TOTAL = number of slides (count dynamically based on content)
+// Example: 11 for a paper with 2 methods slides + 3 results slides
+const TOTAL = 11;
 
 function addSlideNum(slide, n) {
   slide.addText(`${n} / ${TOTAL}`, {
@@ -631,7 +640,7 @@ python -m markitdown Literature_Review.pptx
 ```
 
 **Checklist:**
-- [ ] All 8 slides present in correct order
+- [ ] All required sections present in correct order (Title → TOC → Background → Methods → Results → Discussion → Inspirations → End)
 - [ ] Title slide has correct paper title, authors, journal, IF, quartile
 - [ ] Action titles are complete sentences (not topic labels)
 - [ ] Bullet points are concise (< 15 words each)

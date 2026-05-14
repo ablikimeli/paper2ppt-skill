@@ -5,9 +5,9 @@
 
 [![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-1F4E79)](https://claude.ai/code)
 
-A **Claude Code Skill** that generates a professional 8-slide academic literature review PPT from a paper identifier — just paste a DOI, PMID, PMCID, or paper URL.
+A **Claude Code Skill** that generates a professional academic literature review PPT from a paper identifier — just paste a DOI, PMID, PMCID, or paper URL. Slide count adapts to paper content (8-15+ slides).
 
-一个 **Claude Code Skill**，输入论文链接（或 DOI、PMID、PMCID），自动抓取元数据、影响因子、JCR 分区、论文图片和表格，生成 8 页精美的英文文献汇报 PPT。
+一个 **Claude Code Skill**，输入论文链接（或 DOI、PMID、PMCID），自动抓取元数据、影响因子、JCR 分区、论文图片和表格，生成精美的英文文献汇报 PPT。幻灯片数量根据论文内容自动调整。
 
 ---
 
@@ -17,7 +17,7 @@ A **Claude Code Skill** that generates a professional 8-slide academic literatur
 - **Auto metadata** / 自动元数据: title, authors, journal, date, abstract from CrossRef
 - **Impact Factor & JCR quartile** / IF 与 JCR 分区: via WebSearch
 - **Auto figure download** / 自动下载图片: from publisher HTML or PDF fallback
-- **8-slide English PPT** / 8 页英文 PPT: academically styled, ready to present
+- **English PPT** / 英文 PPT: academically styled, slide count adapts to content
 - **Graceful fallbacks** / 容错机制: text-only layout when figures unavailable
 
 ## Installation / 安装
@@ -66,16 +66,20 @@ Invoke in Claude Code:
 
 ## PPT Structure / PPT 结构
 
-| Slide | Chinese | English |
-| :---- | :------ | :------ |
-| 1 | 标题页 — 题目、作者、期刊、IF、JCR、DOI | Title — paper info, IF, JCR quartile |
-| 2 | 目录页 — 6 项导航 | Table of Contents |
-| 3 | 研究背景与目的 | Background & Objectives |
-| 4 | 研究方法 | Methods & Materials |
-| 5 | 研究结果（含图片/表格） | Results (with figures/tables) |
-| 6 | 讨论与结论 | Discussion & Conclusion |
-| 7 | 启发与借鉴 | Inspirations |
-| 8 | 结束页 — Thank you / Q&A | End Page |
+Slide count adapts to paper content. These are the core sections in order:
+
+| Section | Slides | Description |
+| :------ | :----- | :---------- |
+| Title Slide | 1 | Paper info, IF, JCR quartile |
+| Table of Contents | 1 | Navigation overview |
+| Background & Objectives | 1-2 | Rationale, gap, objectives |
+| Methods & Materials | 1-3 | Design, population, analysis |
+| Results | 1-4 | Key findings + figures/tables |
+| Discussion & Conclusion | 1-2 | Main findings, limitations |
+| Inspirations | 1 | Implications & future directions |
+| End Page | 1 | Thank you / Q&A |
+
+> Slides are not fixed in number — simple papers may have 8-9 slides, while complex papers can reach 15+ slides. Each major finding gets its own slide.
 
 ## Input Sources / 支持的数据源
 
